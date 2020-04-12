@@ -142,11 +142,36 @@ public class Game {
     public String checkGameWinner(char [][]grid){
         String result = "None";
                     /***Student code goes here ...***/
+        //Ta petla sprawdza kolumny: Czy sa 3 "x" lub 3 "o": (Checks columns for win)
 
+        for (int i = 0; i < 3; i++) {
+            if ((grid[i][0] == 'x' && grid[i][1] == 'x' && grid[i][2] == 'x') ||
+                    (grid[0][0] == 'x' && grid[1][1] == 'x' &&grid[2][2] == 'x')) { // Sprawdzanie skosow "x" (Diagonal check)
+                result = "X wins";
+                break;
+            } else if ((grid[i][0] == 'o' && grid[i][1] == 'o' && grid[i][2] == 'o') ||
+                    (grid[0][0] == 'o' && grid[1][1] == 'o' &&grid[2][2] == 'o')) {  // Sprawdzanie skosow "o" (Diagonal check)
+                result = "O wins";
+                break;
+            }
+        }
+        //Ta petla sprawdza wiersze: Czy sa 3 "x" lub 3 "o": (Checks rows for win)
+        for (int j = 0; j < 3; j++) {
+            if (grid[0][j] == 'x' && grid[1][j] == 'x' && grid[2][j] == 'x') {
+                result = "X wins";
+                break;
+            } else if (grid[0][j] == 'o' && grid[1][j] == 'o' && grid[2][j] == 'o') {
+                result = "O wins";
+                break;
+            }
+        }
+        //Ta petla sprawdza czy jest remis: (Checks for tie)
+        if (freeSpots == 0) {
+            result = "Tie";
+        }
         return result;
     }
-
-    /**
+      /**
      * Main function
      * @param args command line arguments
      */
